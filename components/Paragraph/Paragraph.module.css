@@ -1,0 +1,18 @@
+.p {
+	margin: 0;
+}
+
+.lg {
+	color: var(--black);
+	font-size: 16px;
+}
+
+.md {
+	color: var(--black);
+	font-size: 14px;
+}
+
+.sm {
+	color: var(--black);
+	font-size: 12px;
+}

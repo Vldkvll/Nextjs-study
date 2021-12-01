@@ -1,0 +1,22 @@
+.footer {
+	display: grid;
+	padding: 25px 30px;
+	background-color: var(--primary);
+	color: var(--white);
+	font-size: 16px;
+	gap: 10px 40px;
+
+	/* grid-template-areas: "right agreement confident"; */
+	grid-template-columns: 1fr auto auto;
+	line-height: 24px;
+}
+
+.footer a:hover {
+	color: var(--gray-light);
+}
+
+@media (max-width: 765px) {
+	.footer {
+		grid-template-columns: 1fr;
+	}
+}

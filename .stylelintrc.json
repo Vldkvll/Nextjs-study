@@ -1,0 +1,16 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-css-modules"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules": {
+        "indentation": [
+            "tab"
+        ],
+        
+        "color-hex-case": "upper"
+    }
+}
