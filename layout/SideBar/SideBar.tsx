@@ -6,6 +6,7 @@ import { ISideBar } from "./SideBar.props";
 import Logo from "../logo.svg";
 
 import styles from "./SideBar.module.css";
+import { Search } from "../../components";
 
 let cx = classNames.bind(styles);
 
@@ -13,7 +14,7 @@ export const SideBar = ({ className, ...props }: ISideBar): JSX.Element => {
 	return (
 		<div className={cx(className, styles.sidebBBar)} {...props}>
 			<Logo className={cx(styles.logo)} />
-			<div>Search</div>
+			<Search />
 			<Menu />
 		</div>
 	);

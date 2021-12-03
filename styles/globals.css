@@ -2,7 +2,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	background: #F5F6F8;
+	background: #f5f6f8;
 	color: var(--black);
 	font-family: "Noto Sans", sans-serif;
 }
@@ -17,14 +17,15 @@ a {
 }
 
 :root {
-	--black: #000C;
-	--gray-light: #EBEBEB;
-	--gray-dark: #787D85;
-	--white: #FFF;
-	--primary: #7653FC;
-	--primary-hover: #5C36F3;
-	--red: #FC836D;
-	--green: #1DC37E;
-	--green-light: #C8F8E4;
+	--black: #000c;
+	--gray: #a4a4a4;
+	--gray-light: #ebebeb;
+	--gray-dark: #787d85;
+	--white: #fff;
+	--primary: #7653fc;
+	--primary-hover: #5c36f3;
+	--red: #fc836d;
+	--green: #1dc37e;
+	--green-light: #c8f8e4;
 	--font-family: "Noto Sans", sans-serif;
 }

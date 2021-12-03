@@ -30,3 +30,16 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
 		id: TopLevelCategory.Products,
 	},
 ];
+
+export const priceRu = (price: number): string =>
+	price
+		.toString()
+		.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+		.concat(" €");
+
+
+
+export const declOfnum = (number: number, titles: [string, string, string]): string => {
+			
+	return titles[]
+}

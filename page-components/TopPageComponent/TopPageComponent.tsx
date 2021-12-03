@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useReducer } from "react";
 import classNames from "classnames/bind";
 
 import { TopPageComponentProps } from "./TopPageComponent.props";
 
 import styles from "./TopPageComponent.module.css";
-import { HhData, Htag, P, Tag } from "../../components";
+import {
+	Advantages,
+	HhData,
+	Htag,
+	P,
+	Product,
+	Sort,
+	Tag,
+} from "../../components";
+import { TopLevelCategory } from "../../interfaces/enum";
+import { SortEnum } from "../../components/Sort/Sort.props";
+import { SortReducer } from "./sort.reducer";
 
 let cx = classNames.bind(styles);
 
@@ -13,6 +24,15 @@ export const TopPageComponent = ({
 	products,
 	firstCategory,
 }: TopPageComponentProps): JSX.Element => {
+	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
+		SortReducer,
+		{ products, sort: SortEnum.Rating }
+	);
+
+	const setSort = (sort: SortEnum) => {
+		dispatchSort({ type: sort });
+	};
+
 	return (
 		<>
 			<div className={cx(styles.wrapper)}>
@@ -23,11 +43,13 @@ export const TopPageComponent = ({
 							{products.length}
 						</Tag>
 					)}
-					<span>Sorts</span>
+					<Sort sort={sort} setSort={setSort} />
 				</div>
 				<div>
-					{products &&
-						products.map((p) => <div key={p._id}>{p.title}</div>)}
+					{sortedProducts &&
+						sortedProducts.map((p) => (
+							<Product key={p._id} product={p} />
+						))}
 				</div>
 				<div className={cx(styles.hhTitle)}>
 					<Htag tag="h2">Vacancy - {page.category}</Htag>
@@ -37,7 +59,27 @@ export const TopPageComponent = ({
 						</Tag>
 					)}
 				</div>
-				{page.hh && <HhData {...page.hh} />}
+				{firstCategory === TopLevelCategory.Courses && page.hh && (
+					<HhData {...page.hh} />
+				)}
+				{page.advantages && page.advantages.length > 0 && (
+					<>
+						<Htag tag="h2">Advantages</Htag>
+						<Advantages advantages={page.advantages} />
+					</>
+				)}
+				{page.seoText && (
+					<div
+						className={styles.seo}
+						dangerouslySetInnerHTML={{ __html: page.seoText }}
+					/>
+				)}
+				<Htag tag="h2">Skills</Htag>
+				{page.tags.map((t) => (
+					<Tag key={t} color="primary">
+						{t}
+					</Tag>
+				))}
 			</div>
 		</>
 	);
