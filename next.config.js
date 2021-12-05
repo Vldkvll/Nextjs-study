@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['courses-top.ru']
+  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'))
     fileLoaderRule.exclude = /\.svg$/
