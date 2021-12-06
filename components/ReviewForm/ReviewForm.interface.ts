@@ -6,3 +6,7 @@ export interface IReviewForm {
     description: string
     rate: number
 }
+
+export interface IReviewSentResponse {
+    message: string
+}

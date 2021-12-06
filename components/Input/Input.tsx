@@ -7,7 +7,6 @@ import styles from "./Input.module.css";
 
 let cx = classNames.bind(styles);
 
-// eslint-disable-next-line react/display-name
 export const Input = forwardRef(
 	(
 		{ className, error, ...props }: InputProps,
@@ -24,10 +23,12 @@ export const Input = forwardRef(
 				/>
 				{error && (
 					<span role="alert" className={styles.errorMessage}>
-						{error.message}
+						<i>{error.message}</i>
 					</span>
 				)}
 			</div>
 		);
 	}
 );
+
+Input.displayName = "Input";

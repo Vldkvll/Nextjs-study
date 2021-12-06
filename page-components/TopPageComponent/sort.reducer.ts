@@ -1,6 +1,6 @@
 import { SortEnum } from '../../components/Sort/Sort.props';
 
-export type SortAction = { type: SortEnum.Price} | { type: SortEnum.Rating}
+export type SortAction = { type: SortEnum.Price} | { type: SortEnum.Rating}  | { type: 'reset', initialState: ProductModel[]}
 
 
 export interface SortReducerState {
@@ -22,6 +22,11 @@ export const SortReducer = (state: SortReducerState, action: SortAction):SortRed
             return {
                 sort: SortEnum.Price,
                 products: state.products.sort((a,b) => a.price-b.price)
+            }
+        case 'reset':
+            return {
+                sort: SortEnum.Rating,
+                products: action.initialState
             }
     
         default:

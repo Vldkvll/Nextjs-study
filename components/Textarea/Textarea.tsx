@@ -7,18 +7,28 @@ import styles from "./Textarea.module.css";
 
 let cx = classNames.bind(styles);
 
-// eslint-disable-next-line react/display-name
 export const Textarea = forwardRef(
 	(
-		{ className, ...props }: TextAreaProps,
+		{ className, error, ...props }: TextAreaProps,
 		ref: ForwardedRef<HTMLTextAreaElement>
 	): JSX.Element => {
 		return (
-			<textarea
-				ref={ref}
-				className={cx(className, styles.input)}
-				{...props}
-			/>
+			<div className={cx(className, styles.textareaWrapper)}>
+				<textarea
+					ref={ref}
+					className={cx(styles.textarea, {
+						[styles.error]: error,
+					})}
+					{...props}
+				/>
+				{error && (
+					<span className={styles.errorMessage}>
+						<i>{error.message}</i>
+					</span>
+				)}
+			</div>
 		);
 	}
 );
+
+Textarea.displayName = "Textarea";
