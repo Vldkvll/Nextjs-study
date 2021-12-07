@@ -8,6 +8,7 @@ import { SideBar } from "./SideBar/SideBar";
 import { Footer } from "./Footer/Footer";
 
 import styles from "./Layout.module.css";
+import { Up } from "../components";
 
 let cx = classNames.bind(styles);
 
@@ -18,6 +19,7 @@ export const Layout = ({ children }: ILayout): JSX.Element => {
 			<SideBar className={styles.sidebar} />
 			<main className={styles.body}>{children}</main>
 			<Footer className={styles.footer} />
+			<Up />
 		</div>
 	);
 };

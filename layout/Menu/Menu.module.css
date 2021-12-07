@@ -27,7 +27,6 @@
 	padding-left: 32px;
 	border-left: 1px solid #dfdfdf;
 	margin-top: 15px;
-	margin-left: 12px;
 }
 
 .secondLevel {
@@ -41,15 +40,16 @@
 }
 
 .secondLevelBlock {
-	display: none;
+	overflow: hidden;
+	/* display: none; */
 }
 
-.secondLevelBlockOpened {
+/* .secondLevelBlockOpened {
 	display: block;
 }
 .secondLevelBlockOpened:last-child {
 	margin-bottom: 20px;
-}
+} */
 
 .thirdLevel {
 	display: block;

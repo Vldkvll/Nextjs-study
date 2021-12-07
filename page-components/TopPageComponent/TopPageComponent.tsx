@@ -16,6 +16,7 @@ import {
 import { TopLevelCategory } from "../../interfaces/enum";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { SortReducer } from "./sort.reducer";
+import { useScrollY } from "../../hooks/useScrollY";
 
 let cx = classNames.bind(styles);
 
@@ -28,6 +29,8 @@ export const TopPageComponent = ({
 		SortReducer,
 		{ products, sort: SortEnum.Rating }
 	);
+
+	// const y = useScrollY();
 
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort });
@@ -52,7 +55,7 @@ export const TopPageComponent = ({
 				<div>
 					{sortedProducts &&
 						sortedProducts.map((p) => (
-							<Product key={p._id} product={p} />
+							<Product key={p._id} layout product={p} />
 						))}
 				</div>
 				<div className={cx(styles.hhTitle)}>
