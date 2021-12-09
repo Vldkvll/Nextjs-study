@@ -21,10 +21,26 @@
 
 .body {
 	grid-area: body;
+	outline: none;
 }
 
 .footer {
 	grid-area: footer;
+}
+
+.skipling {
+	display: block;
+	position: fixed;
+	height: 0;
+	left: 100px;
+	top: 0;
+	overflow: hidden;
+	background-color: var(--primary);
+	color: var(--white);
+}
+
+.display {
+	height: auto;
 }
 
 @media (max-width: 765px) {

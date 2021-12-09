@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent } from "react";
 import classNames from "classnames/bind";
 
 import { SearchProps } from "./Search.props";
@@ -30,7 +30,7 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 	};
 
 	return (
-		<div className={cx(styles.search, className)} {...props}>
+		<form role="search" className={cx(styles.search, className)} {...props}>
 			<Input
 				className={styles.input}
 				placeholder="Search..."
@@ -42,9 +42,10 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 				appearance={"primary"}
 				className={styles.button}
 				onClick={goToSearch}
+				aria-label={"Search on site"}
 			>
 				<SearchIcon />
 			</Button>
-		</div>
+		</form>
 	);
 };

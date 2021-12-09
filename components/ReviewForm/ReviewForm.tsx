@@ -27,6 +27,7 @@ export const ReviewForm = ({
 		handleSubmit,
 		formState: { errors },
 		reset,
+		clearErrors,
 	} = useForm<IReviewForm>();
 
 	const [error, setError] = useState<string>();
@@ -54,6 +55,7 @@ export const ReviewForm = ({
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className={cx(styles.reviewForm, className)} {...props}>
 					<Input
+						aria-invalid={errors.name ? true : false}
 						{...register("name", {
 							required: { value: true, message: "Заполните Имя" },
 						})}
@@ -61,6 +63,7 @@ export const ReviewForm = ({
 						error={errors.name}
 					/>
 					<Input
+						aria-invalid={errors.title ? true : false}
 						{...register("title", {
 							required: {
 								value: true,
@@ -94,6 +97,8 @@ export const ReviewForm = ({
 						/>
 					</div>
 					<Textarea
+						aria-label="текст отзыва"
+						aria-invalid={errors.description ? true : false}
 						{...register("description", {
 							required: { value: true, message: "Заполните Имя" },
 						})}
@@ -104,7 +109,7 @@ export const ReviewForm = ({
 					<div className={styles.submit}>
 						<Button
 							appearance="primary"
-							//  type="submit"
+							onClick={() => clearErrors()}
 						>
 							Отправить
 						</Button>
@@ -115,26 +120,35 @@ export const ReviewForm = ({
 					</div>
 				</div>
 				{isSuccess && (
-					<div className={cx(styles.success, styles.panel)}>
+					<div
+						role="alert"
+						className={cx(styles.success, styles.panel)}
+					>
 						<div className={styles.successtitle}>
 							Ваш отзыв отправлен
 						</div>
 						<div className={styles.successdescription}>
 							Спасибо, ваш отзыв будет опубликован после проверки.
 						</div>
-						<CloseIcon
+						<button
+							aria-label="закрыть оповещение"
 							className={styles.close}
 							onClick={() => setIsSuccess(false)}
-						/>
+						>
+							<CloseIcon />
+						</button>
 					</div>
 				)}
 				{error && (
 					<div className={cx(styles.error, styles.panel)}>
 						{error}
-						<CloseIcon
+						<button
+							aria-label="закрыть оповещение"
 							className={styles.close}
 							onClick={() => setError("")}
-						/>
+						>
+							<CloseIcon />
+						</button>
 					</div>
 				)}
 			</form>

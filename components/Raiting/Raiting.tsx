@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames/bind";
 
-import { IRaiting } from "./Raiting.props";
+import { RatingProps } from "./Raiting.props";
 
 import StarIcon from "./star.svg";
 import styles from "./Raiting.module.css";
@@ -16,7 +16,7 @@ let cx = classNames.bind(styles);
 
 export const Raiting = forwardRef(
 	(
-		{ isEditable = false, rating, setRating, error, ...props }: IRaiting,
+		{ isEditable = false, rating, setRating, error, ...props }: RatingProps,
 		ref: ForwardedRef<HTMLDivElement>
 	): JSX.Element => {
 		const [ratingArray, setratingArray] = useState<JSX.Element[]>(
@@ -33,6 +33,16 @@ export const Raiting = forwardRef(
 					return (
 						<span key={i}>
 							<StarIcon
+								role={isEditable ? "slider" : ""}
+								aria-invalid={error ? true : false}
+								aria-valuenow={rating}
+								aria-valuemax={5}
+								aria-valuemin={1}
+								aria-label={
+									isEditable
+										? "Укажите рейтинг пробелом или клавишей ввода, перемещение стрелками вверх или вниз"
+										: { rating }
+								}
 								className={cx(styles.star, {
 									[styles.filled]: i < currentRating,
 									[styles.editable]: isEditable,
@@ -97,7 +107,7 @@ export const Raiting = forwardRef(
 					return <span key={i}>{r}</span>;
 				})}
 				{error && (
-					<span className={styles.errorMessage}>
+					<span role="alert" className={styles.errorMessage}>
 						<i>{error.message}</i>
 					</span>
 				)}

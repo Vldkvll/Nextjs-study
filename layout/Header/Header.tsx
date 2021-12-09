@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { IHeader } from "./Header.props";
 import Logo from "../logo.svg";
@@ -15,6 +15,8 @@ let cx = classNames.bind(styles);
 export const Header = ({ className, ...props }: IHeader): JSX.Element => {
 	const [isOpened, setisOpened] = useState<boolean>(false);
 
+	const shouldReduceMotion = useReducedMotion();
+
 	const router = useRouter();
 
 	useEffect(() => {
@@ -25,13 +27,13 @@ export const Header = ({ className, ...props }: IHeader): JSX.Element => {
 		opened: {
 			opacity: 1,
 			x: 0,
-			transition: {
-				stiffness: 20,
-				// when: "beforeChildren",
-				// staggerChildren: 0.1,
-			},
+			transition: shouldReduceMotion
+				? {}
+				: {
+						stiffness: 20,
+				  },
 		},
-		closed: { opacity: 1, x: "100%" },
+		closed: { opacity: shouldReduceMotion ? 1 : 0, x: "100%" },
 	};
 
 	return (

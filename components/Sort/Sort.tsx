@@ -16,24 +16,34 @@ export const Sort = ({
 }: ISort): JSX.Element => {
 	return (
 		<div className={cx(styles.sort, className)} {...props}>
-			<span
+			<div id="sort" className={cx(styles.ariaSortDiv)}>
+				Сортировка
+			</div>
+			<button
+				id="rating"
 				onClick={() => setSort(SortEnum.Rating)}
 				className={cx({
 					[styles.active]: sort === SortEnum.Rating,
 				})}
+				// aria-role={"checkbox"}
+				aria-labelledby="sort rating"
+				aria-selected={sort === SortEnum.Rating}
 			>
 				<SortIcon className={styles.icon} />
-				On Rate
-			</span>
-			<span
+				По&nbsp;Рейтингу
+			</button>
+			<button
+				id="price"
+				aria-labelledby="sort price"
+				aria-selected={sort === SortEnum.Price}
 				onClick={() => setSort(SortEnum.Price)}
 				className={cx({
 					[styles.active]: sort === SortEnum.Price,
 				})}
 			>
 				<SortIcon className={styles.icon} />
-				On Price
-			</span>
+				По&nbsp;Цене
+			</button>
 		</div>
 	);
 };

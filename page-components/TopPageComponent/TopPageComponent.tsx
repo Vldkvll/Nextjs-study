@@ -16,7 +16,7 @@ import {
 import { TopLevelCategory } from "../../interfaces/enum";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { SortReducer } from "./sort.reducer";
-import { useScrollY } from "../../hooks/useScrollY";
+import { useReducedMotion } from "framer-motion";
 
 let cx = classNames.bind(styles);
 
@@ -30,7 +30,7 @@ export const TopPageComponent = ({
 		{ products, sort: SortEnum.Rating }
 	);
 
-	// const y = useScrollY();
+	const shouldReduceMotion = useReducedMotion();
 
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort });
@@ -46,16 +46,25 @@ export const TopPageComponent = ({
 				<div className={cx(styles.title)}>
 					<Htag tag="h1">{page.title}</Htag>
 					{products && (
-						<Tag color="gray" size="m">
+						<Tag
+							aria-label={`${products.length} элементов`}
+							color="gray"
+							size="m"
+						>
 							{products.length}
 						</Tag>
 					)}
 					<Sort sort={sort} setSort={setSort} />
 				</div>
-				<div>
+				<div role="list">
 					{sortedProducts &&
 						sortedProducts.map((p) => (
-							<Product key={p._id} layout product={p} />
+							<Product
+								role="listitem"
+								key={p._id}
+								layout={shouldReduceMotion ? false : true}
+								product={p}
+							/>
 						))}
 				</div>
 				<div className={cx(styles.hhTitle)}>

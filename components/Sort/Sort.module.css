@@ -5,15 +5,20 @@
 	gap: 40px;
 }
 
-.sort span {
+.sort button {
 	cursor: pointer;
 	display: grid;
 	grid-template-columns: 20px 1fr;
 	gap: 8px;
 	align-items: center;
+	border: none;
+	background: none;
+	font-size: 16px;
+	line-height: 22px;
 }
 
-.sort span:not(.active) {
+.sort button:not(.active) {
+	font-weight: 600;
 	grid-template-columns: 1fr;
 }
 
@@ -28,4 +33,8 @@
 .active .icon {
 	display: block;
 	margin-right: 8px;
+}
+
+.ariaSortDiv {
+	display: none;
 }

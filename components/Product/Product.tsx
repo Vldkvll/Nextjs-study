@@ -37,6 +37,7 @@ export const Product = motion(
 					behavior: "smooth",
 					block: "start",
 				});
+				reviewRef.current?.focus();
 			};
 
 			return (
@@ -55,21 +56,34 @@ export const Product = motion(
 						</div>
 						<div className={styles.title}>{product.title}</div>
 						<div className={styles.price}>
-							{priceRu(product.price)}
+							<span>
+								<span className="visuallyHiden">Цена</span>
+								{priceRu(product.price)}
+							</span>
 							{product.oldPrice && (
 								<Tag
 									className={styles.oldPriceTag}
 									color="green"
 								>
+									<span className="visuallyHiden">
+										Скидка
+									</span>
 									{priceRu(product.price - product.oldPrice)}
 								</Tag>
 							)}
 						</div>
 						<div className={styles.credit}>
-							{priceRu(product.credit)}/
-							<span className={styles.month}>month</span>
+							<span>
+								<span className="visuallyHiden">Кредит</span>
+								{priceRu(product.credit)}
+							</span>
+							<span className={styles.month}> /мес.</span>
 						</div>
 						<div className={styles.rate}>
+							<span className="visuallyHiden">
+								`Рейтинг $
+								{product.reviewAvg ?? product.initialRating}`
+							</span>
 							<Raiting
 								rating={
 									product.reviewAvg ?? product.initialRating
@@ -87,8 +101,12 @@ export const Product = motion(
 								</Tag>
 							))}
 						</div>
-						<div className={styles.priceTitle}>Price</div>
-						<div className={styles.creditTitle}>Credit</div>
+						<div aria-hidden={true} className={styles.priceTitle}>
+							Цена
+						</div>
+						<div aria-hidden={true} className={styles.creditTitle}>
+							Кредит
+						</div>
 						<div className={styles.rateTitle}>
 							<a href="#ref" onClick={scrollToReview}>
 								{product.reviewCount}{" "}
@@ -148,6 +166,7 @@ export const Product = motion(
 								Узнать подробнее
 							</Button>
 							<Button
+								aria-expanded={isReviewOpened}
 								className={styles.reviewBtn}
 								appearance="ghost"
 								arrow={isReviewOpened ? "down" : "right"}
@@ -167,6 +186,7 @@ export const Product = motion(
 						variants={variants}
 					>
 						<Card
+							tabIndex={1}
 							className={cx(styles.review)}
 							color="blue"
 							ref={reviewRef}
