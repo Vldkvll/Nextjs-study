@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import axios from "axios";
 
 import { withLayout } from "../../layout/Layout";
@@ -16,6 +17,16 @@ function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	}
 	return (
 		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta
+					property="og:description"
+					content={page.metaDescription}
+				/>
+				<meta property="og:type" content="article" />
+			</Head>
 			<TopPageComponent
 				products={products}
 				page={page}
