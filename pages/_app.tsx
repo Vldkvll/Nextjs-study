@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 	return (
 		<>
 			<Head>
-				<title>The Best Top</title>
+				<title>The Very Best Top</title>
 				<meta
 					property="og:url"
 					content={process.env.NEXT_PUBLIC_DOMAIN + router.asPath}
