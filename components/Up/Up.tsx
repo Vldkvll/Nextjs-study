@@ -27,6 +27,7 @@ export const Up = (): JSX.Element => {
 			className={styles.up}
 		>
 			<ButtonIcon
+				aria-label="Наверх"
 				onClick={scrollToTop}
 				appearance={"primary"}
 				icon="up"

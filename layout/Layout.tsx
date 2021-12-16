@@ -29,7 +29,7 @@ export const Layout = ({ children }: ILayout): JSX.Element => {
 			<a
 				onKeyDown={skipContentAction}
 				onFocus={() => setIsSkipling(true)}
-				tabIndex={1}
+				tabIndex={0}
 				className={cx(styles.skipling, {
 					[styles.display]: isSkipling,
 				})}

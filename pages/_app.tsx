@@ -1,6 +1,5 @@
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Head from "next/head";
-import ReactGA from "react-ga";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {

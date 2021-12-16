@@ -10,28 +10,31 @@ import { TopPageModel } from "../../interfaces/page.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
 import { TopLevelCategory } from "../../interfaces/enum";
 import { TopPageComponent } from "../../page-components";
+import { Error404 } from "../404";
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	if (!page || !products) {
-		return <></>;
+		return <Error404 />;
 	}
 	return (
 		<>
-			<Head>
-				<title>{page.metaTitle}</title>
-				<meta name="description" content={page.metaDescription} />
-				<meta property="og:title" content={page.metaTitle} />
-				<meta
-					property="og:description"
-					content={page.metaDescription}
+			<>
+				<Head>
+					<title>{page.metaTitle}</title>
+					<meta name="description" content={page.metaDescription} />
+					<meta property="og:title" content={page.metaTitle} />
+					<meta
+						property="og:description"
+						content={page.metaDescription}
+					/>
+					<meta property="og:type" content="article" />
+				</Head>
+				<TopPageComponent
+					products={products}
+					page={page}
+					firstCategory={firstCategory}
 				/>
-				<meta property="og:type" content="article" />
-			</Head>
-			<TopPageComponent
-				products={products}
-				page={page}
-				firstCategory={firstCategory}
-			/>
+			</>
 		</>
 	);
 }
